@@ -15,7 +15,7 @@ class Blockchain {
     this.chain.push(newBlock); // push the new block to the chain
   }
 
-  static isValidChain(chain) {
+  static isValidChain = (chain) => {
     // MAKE SURE CONTAINS GENESIS
     //stringify chain and compare it to the stringified genesis block
     if (JSON.stringify(chain[0]) !== JSON.stringify(Block.genesis())) {
@@ -40,7 +40,25 @@ class Blockchain {
 
     // PASSED ALL TESTS!
     return true;
-  }
+  };
+
+  replaceChain = (chain) => {
+    // CHECK IF CHAIN IS LONGER THAN CURRENT CHAIN
+    if (chain.length <= this.chain.length) {
+      console.error("The incoming chain must be longer.");
+      return; // return if not longer
+    }
+
+    // CHECK IF CHAIN IS VALID
+    if (!Blockchain.isValidChain(chain)) {
+      console.error("The incoming chain must be valid.");
+      return; // return if not valid
+    }
+
+    // IF CHAIN IS LONGER AND VALID, REPLACE THE CURRENT CHAIN
+    console.log(`Replacing the current chain with:`, chain);
+    this.chain = chain;
+  };
 }
 
 module.exports = Blockchain;
