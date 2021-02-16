@@ -26,7 +26,7 @@ class Block {
     const { difficulty } = lastBlock;
     let nonce = 0;
 
-    // make hash meet the difficulty criteria
+    // ensure the hash meets the difficulty criteria
     do {
       nonce++;
       timestamp = Date.now();
