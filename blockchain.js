@@ -26,14 +26,20 @@ class Blockchain {
     for (let i = 1; i < chain.length; i++) {
       // MAKE SURE ALL BLOCKS REFERENCE PREVIOUS BLOCKS HASHES CORRECTLY
       // pull preoperties of current block
-      const { timestamp, lastHash, hash, data } = chain[i];
+      const { timestamp, lastHash, hash, data, nonce, difficulty } = chain[i];
       // save the actual last hash for previous block
       const actualLastHash = chain[i - 1].hash;
       //check if last hash equals the hash of the previous block
       if (lastHash !== actualLastHash) return false;
       // CHECK IF CURRENT HASH IS VALID
       // generate a new hash using current fields
-      const validatedHash = cryptoHash(timestamp, lastHash, data);
+      const validatedHash = cryptoHash(
+        timestamp,
+        lastHash,
+        data,
+        nonce,
+        difficulty
+      );
       // if the new hash is not the same as the expect hash, then it is an invalid hash
       if (hash !== validatedHash) return false;
     }
