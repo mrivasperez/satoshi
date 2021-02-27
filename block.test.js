@@ -1,5 +1,5 @@
 const Block = require("./block");
-const { GENESIS_DATA } = require("./config");
+const { GENESIS_DATA, MINE_RATE } = require("./config");
 const cryptoHash = require("./crypto-hash");
 
 describe("Block", () => {
@@ -79,5 +79,11 @@ describe("Block", () => {
         "0".repeat(minedBlock.difficulty)
       );
     });
+  });
+
+  describe("adjustDifficulty()", () => {
+    test("should rasie the difficulty for a quickly mined block", () => {});
+
+    test("should lower the difficulty for a slowly mined block", () => {});
   });
 });

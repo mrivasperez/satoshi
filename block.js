@@ -24,6 +24,7 @@ class Block {
     const lastHash = lastBlock.hash;
     // get difficulty from the last block
     const { difficulty } = lastBlock;
+    // set nonce as dynamic
     let nonce = 0;
 
     // ensure the hash meets the difficulty criteria
